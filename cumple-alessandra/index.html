@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abejita Chiquitita · Invitación · Zentria Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{
+  --oro:#F5A623;
+  --oro-claro:#FFD34E;
+  --oro-suave:#FFE9A8;
+  --miel:#E68A00;
+  --miel-hondo:#B86A00;
+  --negro:#221B0A;
+  --negro-suave:#2e2510;
+  --crema:#FFFBEF;
+  --blanco:#ffffff;
+  --sombra: 0 20px 45px -15px rgba(120,80,0,.45);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html,body{overflow-x:hidden;}
+body{
+  font-family:'Fredoka',system-ui,sans-serif;
+  color:var(--negro);
+  background:#FFCF3E;
+  text-align:center;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===================== FONDO PANAL ===================== */
+.bg{
+  position:fixed;inset:-10% -10% -10% -10%;z-index:-3;
+  background:
+    radial-gradient(120% 90% at 50% -10%, #FFE79A 0%, #FFCF3E 45%, #F2A81E 100%);
+}
+.bg::before{ /* panal SVG */
+  content:"";position:absolute;inset:0;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'><g fill='none' stroke='%23B86A00' stroke-width='2' stroke-opacity='0.35'><path d='M28 0 L52 14 L52 42 L28 56 L4 42 L4 14 Z'/><path d='M28 56 L52 70 L52 98 L28 112 L4 98 L4 70 Z'/></g></svg>");
+  background-size:56px 84px;
+  animation:drift 60s linear infinite;
+}
+@keyframes drift{to{background-position:0 336px;}}
+
+/* polen flotante */
+#polen{position:fixed;inset:0;z-index:-2;pointer-events:none;}
+
+/* ===================== INTRO ===================== */
+#intro{
+  position:fixed;inset:0;z-index:60;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:
+    radial-gradient(130% 100% at 50% 30%, #FFEFB8 0%, #FFC939 55%, #E88E12 100%);
+  transition:opacity .9s ease, visibility .9s ease;
+}
+#intro.hide{opacity:0;visibility:hidden;}
+.intro-stage{position:relative;width:340px;height:360px;}
+
+/* sobre premium */
+.envelope{
+  position:absolute;left:50%;bottom:70px;transform:translateX(-50%);
+  width:220px;height:150px;filter:drop-shadow(0 16px 22px rgba(120,70,0,.35));
+  animation:envRise 1.4s cubic-bezier(.2,.9,.25,1) both;
+}
+@keyframes envRise{from{transform:translateX(-50%) translateY(60px) scale(.6);opacity:0;}to{transform:translateX(-50%) translateY(0) scale(1);opacity:1;}}
+.env-body{position:absolute;inset:0;background:linear-gradient(160deg,#FFFDF6,#FFEFC6);border-radius:12px;border:2px solid var(--oro);}
+.env-pocket{position:absolute;bottom:0;left:0;width:100%;height:100%;
+  background:linear-gradient(160deg,#FFE9A8,#FFD34E);border-radius:12px;
+  clip-path:polygon(0 40%,50% 100%,100% 40%,100% 100%,0 100%);border:2px solid var(--oro);z-index:3;}
+.env-flap{position:absolute;top:0;left:0;width:100%;height:56%;
+  background:linear-gradient(160deg,#FFDE7A,#F5A623);
+  clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;
+  transition:transform .8s ease;z-index:4;border-radius:12px 12px 0 0;}
+.env-card{position:absolute;left:8%;top:12%;width:84%;height:80%;
+  background:var(--crema);border-radius:8px;z-index:2;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  box-shadow:0 6px 14px rgba(120,80,0,.2);transition:transform .8s ease .2s;}
+.env-card .mini-ph{font-size:.62rem;color:var(--miel-hondo);font-weight:600;}
+#intro.opening .env-flap{transform:rotateX(180deg);}
+#intro.opening .env-card{transform:translateY(-120px) scale(1.05);}
+
+/* abeja SVG volando en 8 */
+.bee-fly{position:absolute;top:40px;left:50%;width:78px;margin-left:-39px;
+  animation:fig8 5s ease-in-out infinite;z-index:6;filter:drop-shadow(0 6px 6px rgba(80,50,0,.3));}
+@keyframes fig8{
+  0%{transform:translate(-70px,0) rotate(-14deg);}
+  25%{transform:translate(70px,-58px) rotate(14deg);}
+  50%{transform:translate(-70px,-116px) rotate(-14deg) scaleX(-1);}
+  75%{transform:translate(70px,-58px) rotate(14deg) scaleX(-1);}
+  100%{transform:translate(-70px,0) rotate(-14deg);}
+}
+.wing{transform-origin:center;animation:flap .18s ease-in-out infinite alternate;}
+@keyframes flap{from{transform:scaleY(1);}to{transform:scaleY(.55);}}
+
+.plimplim{position:absolute;bottom:0;left:14px;width:120px;z-index:5;
+  animation:plimBob 2.4s ease-in-out infinite;}
+@keyframes plimBob{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-12px) rotate(2deg);}}
+.plim-ph{background:repeating-linear-gradient(45deg,#fff6d0,#fff6d0 9px,#ffe89a 9px,#ffe89a 18px);
+  border:3px dashed var(--miel);border-radius:16px;height:150px;
+  display:flex;align-items:center;justify-content:center;color:var(--miel-hondo);
+  font-weight:700;font-size:.72rem;padding:6px;text-align:center;}
+.plim-img{width:100%;height:auto;display:block;filter:drop-shadow(0 10px 12px rgba(80,50,0,.28));}
+.num1-img{width:120px;height:auto;flex-shrink:0;filter:drop-shadow(2px 4px 6px rgba(120,80,0,.35));
+  animation:bob 2.4s ease-in-out infinite;}
+
+.intro-title{margin-top:26px;font-family:'Pacifico',cursive;font-size:2rem;
+  color:var(--negro);text-shadow:2px 2px 0 var(--oro-claro);}
+.intro-sub{font-family:'Fredoka';font-weight:500;color:var(--miel-hondo);margin-top:2px;letter-spacing:.5px;}
+.btn-open{margin-top:20px;background:var(--negro);color:var(--oro-claro);
+  border:none;padding:15px 34px;border-radius:40px;font-family:'Baloo 2';font-weight:700;
+  font-size:1.05rem;cursor:pointer;box-shadow:0 7px 0 #000, var(--sombra);
+  transition:transform .12s;letter-spacing:.4px;}
+.btn-open:hover{transform:translateY(-2px);}
+.btn-open:active{transform:translateY(5px);box-shadow:0 2px 0 #000;}
+
+/* sparkles intro */
+.spark{position:absolute;color:#fff;font-size:1rem;opacity:0;animation:twinkle 2.4s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.4);}50%{opacity:1;transform:scale(1.1);}}
+
+/* ===================== CONTENIDO ===================== */
+.wrap{max-width:500px;margin:0 auto;padding:34px 18px 40px;}
+
+.card{
+  position:relative;background:rgba(255,251,239,.86);
+  backdrop-filter:blur(6px);border-radius:30px;padding:30px 22px;margin:26px 0;
+  border:1.5px solid rgba(245,166,35,.55);
+  box-shadow:var(--sombra), inset 0 1px 0 rgba(255,255,255,.7);
+  opacity:0;transform:translateY(48px) scale(.98);
+  transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.25,1);
+}
+.card.show{opacity:1;transform:none;}
+/* borde superior de panalcito */
+.card::before{content:"";position:absolute;top:-1.5px;left:22px;right:22px;height:6px;border-radius:6px;
+  background:repeating-linear-gradient(90deg,var(--oro) 0 10px,var(--negro) 10px 12px);opacity:.55;}
+
+/* texto dorado con brillo */
+.gold{
+  font-family:'Baloo 2';font-weight:800;
+  background:linear-gradient(92deg,#B86A00,#F5A623,#FFE07A,#F5A623,#B86A00);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-stroke:.5px rgba(60,40,0,.25);
+  animation:shine 4.5s linear infinite;
+}
+@keyframes shine{to{background-position:220% center;}}
+
+h2.sec{font-family:'Baloo 2';font-weight:700;color:var(--miel-hondo);font-size:1.15rem;
+  letter-spacing:.5px;margin-bottom:6px;}
+
+/* ===== marcos hexagonales de foto ===== */
+.hex{position:relative;margin:0 auto;}
+.hex-inner{
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:linear-gradient(160deg,#fff6d0,#ffe89a);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  color:var(--miel-hondo);font-weight:600;font-size:.72rem;gap:4px;text-align:center;
+  width:100%;height:100%;
+}
+.hex-inner .ico{font-size:1.5rem;}
+/* aro dorado detrás */
+.hex.framed{padding:6px;background:linear-gradient(160deg,var(--oro-claro),var(--miel));
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  filter:drop-shadow(0 14px 18px rgba(120,80,0,.3));}
+
+.foto-principal{width:250px;height:275px;}
+.hex-md{width:150px;height:165px;}
+.hex-sm{width:104px;height:114px;}
+
+/* foto redonda clásica */
+.foto-round{width:210px;height:210px;margin:0 auto;border-radius:50%;
+  border:6px solid var(--oro-claro);overflow:hidden;box-shadow:var(--sombra);
+  background:linear-gradient(160deg,#fff6d0,#ffe89a);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  color:var(--miel-hondo);font-weight:600;font-size:.75rem;gap:4px;}
+.foto-round .ico{font-size:1.7rem;}
+
+.cumple{font-size:1.5rem;font-weight:600;margin-top:20px;}
+.cumple .gold{font-size:2.6rem;display:block;line-height:1;margin-top:2px;}
+.felic{font-size:1.05rem;line-height:1.65;color:#5a4a20;margin:10px 4px;}
+.nombre{font-family:'Pacifico',cursive;font-size:3rem;margin:8px 0;
+  background:linear-gradient(92deg,#B86A00,#F5A623,#FFE07A,#F5A623,#B86A00);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 4.5s linear infinite;filter:drop-shadow(1px 2px 0 rgba(40,25,0,.35));}
+
+/* galería zigzag */
+.galeria{display:flex;flex-direction:column;gap:22px;}
+.g-row{display:flex;align-items:center;}
+.g-left{justify-content:flex-start;}
+.g-right{justify-content:flex-end;}
+
+/* personajes */
+.personajes{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:14px 0 6px;}
+.pj{width:88px;}
+.pj .disc{width:88px;height:88px;border-radius:50%;overflow:hidden;
+  border:4px solid var(--oro);background:repeating-linear-gradient(45deg,#fff6d0,#fff6d0 8px,#ffe89a 8px,#ffe89a 16px);
+  display:flex;align-items:center;justify-content:center;color:var(--miel-hondo);font-size:.62rem;font-weight:700;text-align:center;
+  box-shadow:0 8px 14px rgba(120,80,0,.25);}
+.pj p{font-family:'Baloo 2';font-weight:600;font-size:.78rem;margin-top:6px;color:var(--negro);}
+
+/* contador */
+.contador{display:flex;justify-content:center;gap:10px;margin:16px 0 4px;}
+.cbox{position:relative;width:70px;height:82px;
+  background:linear-gradient(165deg,#2e2510,#100c04);color:var(--oro-claro);
+  border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 0 var(--miel-hondo),0 16px 24px rgba(120,80,0,.35);border:1px solid rgba(255,220,120,.25);}
+.cbox .num{font-family:'Baloo 2';font-weight:800;font-size:1.9rem;line-height:1;}
+.cbox .lab{font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.85;margin-top:4px;}
+
+.acompana{font-family:'Pacifico',cursive;font-size:1.9rem;margin:6px 0;
+  color:var(--miel-hondo);text-shadow:1px 1px 0 var(--oro-suave);}
+
+/* bloque 3: fecha / 1 / hora */
+.evento3{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.evento3 .lado{flex:1;font-family:'Baloo 2';font-weight:600;font-size:1.05rem;color:var(--negro);}
+.evento3 .lado .ico{font-size:1.5rem;display:block;margin-bottom:4px;}
+.evento3 .lado small{display:block;font-size:.72rem;color:#8a7333;font-weight:400;margin-top:2px;font-family:'Fredoka';}
+.numero1{font-family:'Baloo 2';font-weight:800;font-size:5.2rem;line-height:.9;
+  background:linear-gradient(92deg,#B86A00,#F5A623,#FFE07A,#F5A623,#B86A00);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 4.5s linear infinite;filter:drop-shadow(2px 3px 0 var(--negro));}
+
+/* ubicación */
+.ubica{display:flex;align-items:center;gap:18px;text-align:left;justify-content:center;}
+.pin{font-size:2.8rem;animation:bob 2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.direccion{font-family:'Baloo 2';font-weight:600;font-size:1.08rem;margin:16px 0 4px;}
+.direccion small{display:block;font-weight:400;color:#8a7333;font-family:'Fredoka';font-size:.85rem;margin-top:2px;}
+
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  font-family:'Baloo 2';font-weight:700;padding:15px 28px;border-radius:40px;font-size:1.05rem;margin:8px 4px;
+  box-shadow:0 6px 0 rgba(0,0,0,.28),0 12px 22px rgba(0,0,0,.2);transition:transform .12s;}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.28);}
+.btn-mapa{background:linear-gradient(180deg,#FFD34E,#E68A00);color:var(--negro);text-decoration:underline;text-underline-offset:3px;
+  box-shadow:0 7px 0 var(--miel-hondo),0 14px 22px rgba(120,80,0,.3);}
+.btn-wa{background:linear-gradient(180deg,#3BEA82,#17A94B);color:#fff;font-size:1.12rem;padding:17px 30px;text-decoration:underline;text-underline-offset:3px;
+  box-shadow:0 7px 0 #0e7a37,0 14px 22px rgba(0,0,0,.22);}
+.btn-wa svg{width:24px;height:24px;}
+
+.esperamos{font-size:1.15rem;line-height:1.6;color:#5a4a20;margin:6px 6px 16px;}
+.esperamos b{color:var(--miel-hondo);}
+
+/* firma Zentria */
+.firma{margin:44px auto 12px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;transform:translateY(20px);transition:all .9s ease;}
+.firma.show{opacity:1;transform:none;}
+.firma .z-mark{width:52px;height:52px;}
+.firma .z-name{font-family:'Baloo 2';font-weight:800;letter-spacing:3px;font-size:1.05rem;color:var(--negro);text-transform:uppercase;}
+.firma .z-name span{color:var(--miel-hondo);}
+.firma .z-tag{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:#8a7333;}
+
+.hint{background:rgba(255,255,255,.55);border:2px dashed var(--miel);border-radius:16px;
+  padding:12px 14px;font-size:.75rem;color:var(--miel-hondo);margin:18px 4px;line-height:1.5;font-weight:500;}
+
+/* nubes suaves de fondo */
+.clouds{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.cloud{position:absolute;background:radial-gradient(circle at 30% 40%,#fff 0%,rgba(255,255,255,.75) 45%,rgba(255,255,255,0) 70%);
+  border-radius:50%;filter:blur(2px);opacity:.6;animation:cloudMove linear infinite;}
+@keyframes cloudMove{from{transform:translateX(-25vw);}to{transform:translateX(125vw);}}
+
+/* DALE CLICK */
+.dale{display:inline-flex;align-items:center;gap:9px;margin-bottom:16px;
+  background:rgba(255,255,255,.85);border:2px solid var(--oro);border-radius:40px;
+  padding:9px 20px;font-family:'Baloo 2';font-weight:700;color:var(--miel-hondo);
+  font-size:.95rem;letter-spacing:1px;box-shadow:0 6px 14px rgba(120,80,0,.25);
+  animation:pulseClick 1.8s ease-in-out infinite;}
+@keyframes pulseClick{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
+.dale .play{width:24px;height:24px;border-radius:50%;background:var(--negro);
+  display:flex;align-items:center;justify-content:center;color:var(--oro-claro);font-size:.7rem;}
+
+.honor{font-size:1.02rem;line-height:1.65;color:#5a4a20;margin:6px 6px 4px;}
+.honor .pequena{font-family:'Baloo 2';font-weight:700;color:var(--miel-hondo);}
+
+/* ===== CALENDARIO ===== */
+.cal{background:rgba(255,251,239,.92);border:2px solid var(--miel);border-radius:18px;
+  padding:14px 12px;max-width:300px;margin:6px auto 2px;box-shadow:0 10px 22px rgba(120,80,0,.25);}
+.cal-mes{font-family:'Baloo 2';font-weight:800;color:var(--miel-hondo);font-size:1.2rem;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-grid .dow{font-family:'Baloo 2';font-weight:700;font-size:.68rem;color:#B86A00;padding:4px 0;}
+.cal-grid .day{font-family:'Fredoka';font-size:.82rem;color:#5a4a20;padding:6px 0;border-radius:8px;position:relative;}
+.cal-grid .day.empty{visibility:hidden;}
+.cal-grid .day.mark{color:#fff;font-weight:700;}
+.cal-grid .day.mark .heart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;color:#ff5c8a;filter:drop-shadow(0 0 6px rgba(255,92,138,.9));animation:glow 1.6s ease-in-out infinite;z-index:0;}
+.cal-grid .day.mark span{position:relative;z-index:1;}
+@keyframes glow{0%,100%{transform:scale(1);filter:drop-shadow(0 0 5px rgba(255,92,138,.7));}50%{transform:scale(1.15);filter:drop-shadow(0 0 12px rgba(255,92,138,1));}}
+
+/* abeja volando por toda la invitación */
+.fly-bee{position:fixed;top:0;left:0;width:58px;z-index:45;pointer-events:none;
+  filter:drop-shadow(0 6px 6px rgba(80,50,0,.3));will-change:transform;}
+.fly-bee.b1{animation:flyPath1 24s ease-in-out infinite;}
+.fly-bee.b2{width:42px;opacity:.85;animation:flyPath2 32s ease-in-out infinite;}
+@keyframes flyPath1{
+  0%{transform:translate(-12vw,18vh) rotate(-8deg);}
+  14%{transform:translate(38vw,6vh) rotate(10deg);}
+  28%{transform:translate(82vw,26vh) rotate(-6deg);}
+  42%{transform:translate(52vw,58vh) rotate(9deg) scaleX(-1);}
+  56%{transform:translate(8vw,42vh) rotate(-10deg) scaleX(-1);}
+  70%{transform:translate(58vw,78vh) rotate(7deg);}
+  84%{transform:translate(88vw,54vh) rotate(-7deg);}
+  100%{transform:translate(-12vw,18vh) rotate(-8deg);}
+}
+@keyframes flyPath2{
+  0%{transform:translate(95vw,70vh) rotate(8deg) scaleX(-1);}
+  20%{transform:translate(55vw,85vh) rotate(-8deg) scaleX(-1);}
+  40%{transform:translate(15vw,60vh) rotate(9deg);}
+  60%{transform:translate(40vw,20vh) rotate(-9deg);}
+  80%{transform:translate(80vw,40vh) rotate(7deg) scaleX(-1);}
+  100%{transform:translate(95vw,70vh) rotate(8deg) scaleX(-1);}
+}
+
+/* fotos dentro de hexágono */
+.hex-inner img.photo{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* personajes ilustrados */
+.disc svg{width:100%;height:100%;display:block;}
+.disc.img-slot{padding:0;background:radial-gradient(circle at 50% 40%,#fff 0%,#FFF3C4 100%);}
+.disc .plim-slot{width:100%;height:100%;object-fit:contain;padding:8px;}
+
+/* abejas voladoras (imagen real) */
+.fly-img{width:100%;display:block;animation:beeWiggle .45s ease-in-out infinite alternate;}
+@keyframes beeWiggle{from{transform:translateY(-2px) rotate(-3deg);}to{transform:translateY(2px) rotate(3deg);}}
+
+/* Plim Plim en galería */
+.hex-inner.pp{background:linear-gradient(160deg,#FFF8E0,#FFE9A8);padding:0;}
+.pp-img{width:88%;height:88%;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(120,80,0,.28));}
+
+/* ===== SECCIÓN FECHA & HORA (llamativa) ===== */
+.evento-hero{background:linear-gradient(160deg,#FFE79A 0%,#FFC53D 55%,#F2A81E 100%);border:2px solid #fff;overflow:hidden;}
+.evento-hero::before{background:repeating-linear-gradient(90deg,#fff 0 10px,var(--miel-hondo) 10px 12px);opacity:.6;}
+.evento-hero::after{content:"";position:absolute;top:-40%;left:50%;width:260px;height:260px;transform:translateX(-50%);
+  background:conic-gradient(from 0deg,rgba(255,255,255,.0),rgba(255,255,255,.55),rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));
+  border-radius:50%;animation:spinGlow 9s linear infinite;pointer-events:none;z-index:0;}
+@keyframes spinGlow{to{transform:translateX(-50%) rotate(360deg);}}
+.eh-title{position:relative;z-index:1;font-family:'Pacifico',cursive;font-size:1.5rem;color:var(--negro);
+  text-shadow:1px 1px 0 #fff;margin-bottom:14px;}
+.eh-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;}
+.eh-uno{width:132px;height:auto;flex-shrink:0;filter:drop-shadow(3px 6px 9px rgba(120,80,0,.45));animation:bob 2.4s ease-in-out infinite;}
+.chip{flex:1;background:#fffdf6;border-radius:18px;padding:14px 8px;border:2px solid var(--oro);
+  box-shadow:0 6px 0 var(--miel-hondo),0 12px 20px rgba(120,80,0,.3);}
+.chip .chip-ico{font-size:1.6rem;display:block;margin-bottom:2px;}
+.chip b{display:block;font-family:'Baloo 2';font-weight:800;color:var(--miel-hondo);font-size:1.12rem;line-height:1.1;}
+.chip small{display:block;font-size:.7rem;color:#8a7333;margin-top:3px;font-weight:600;}
+.eh-show{position:relative;z-index:1;margin-top:16px;display:inline-block;background:var(--negro);color:var(--oro-claro);
+  font-family:'Baloo 2';font-weight:700;font-size:.92rem;padding:8px 20px;border-radius:30px;letter-spacing:.4px;
+  box-shadow:0 5px 12px rgba(0,0,0,.3);}
+
+/* mapa incrustado */
+.mapa-embed{width:100%;border-radius:18px;overflow:hidden;margin:6px 0 14px;
+  border:3px solid var(--oro);box-shadow:0 10px 22px rgba(120,80,0,.28);line-height:0;}
+.mapa-embed iframe{width:100%;height:230px;border:0;display:block;}
+
+/* botón de música */
+.music-btn{position:fixed;right:16px;bottom:16px;z-index:70;width:52px;height:52px;border:none;
+  border-radius:50%;background:linear-gradient(160deg,#FFD34E,#E68A00);color:#221B0A;font-size:1.4rem;
+  cursor:pointer;box-shadow:0 6px 14px rgba(120,80,0,.4),0 3px 0 var(--miel-hondo);
+  display:flex;align-items:center;justify-content:center;transition:transform .12s;}
+.music-btn:active{transform:scale(.92);}
+.music-btn.playing{animation:spinMusic 4s linear infinite;}
+@keyframes spinMusic{to{transform:rotate(360deg);}}
+
+/* confeti canvas */
+#confeti{position:fixed;inset:0;pointer-events:none;z-index:80;}
+
+/* ===== responsivo ===== */
+img{max-width:100%;}
+@media(max-width:420px){
+  .wrap{padding:24px 12px 40px;}
+  .card{padding:24px 16px;border-radius:24px;}
+  .foto-principal{width:200px;height:220px;}
+  .numero1{font-size:4.2rem;}
+  .nombre{font-size:2.4rem;}
+  .hex-md{width:130px;height:143px;}
+  .cbox{width:60px;height:74px;}
+  .cbox .num{font-size:1.55rem;}
+  .eh-uno{width:104px;}
+  .chip b{font-size:.98rem;}
+  .chip{padding:12px 5px;}
+  .personajes{gap:10px;}
+  .pj{width:74px;}
+  .pj .disc{width:74px;height:74px;}
+  .mapa-embed iframe{height:200px;}
+}
+@media(max-width:340px){
+  .contador{gap:6px;}
+  .cbox{width:52px;height:66px;}
+  .cbox .num{font-size:1.3rem;}
+  .eh-top{gap:5px;}
+  .eh-uno{width:88px;}
+  .nombre{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="clouds">
+  <div class="cloud" style="top:8%;width:180px;height:70px;animation-duration:48s;"></div>
+  <div class="cloud" style="top:26%;width:120px;height:50px;animation-duration:60s;animation-delay:-20s;"></div>
+  <div class="cloud" style="top:52%;width:220px;height:85px;animation-duration:70s;animation-delay:-40s;"></div>
+  <div class="cloud" style="top:74%;width:140px;height:56px;animation-duration:55s;animation-delay:-10s;"></div>
+</div>
+<canvas id="polen"></canvas>
+
+<!-- abejas volando por toda la invitación -->
+<div class="fly-bee b1"><img src="abejita.png" alt="" class="fly-img"></div>
+<div class="fly-bee b2"><img src="abejita.png" alt="" class="fly-img"></div>
+
+<!-- ============ INTRO ============ -->
+<div id="intro">
+  <div class="intro-stage">
+    <span class="spark" style="top:20px;left:30px;">✦</span>
+    <span class="spark" style="top:60px;right:20px;animation-delay:.6s;">✧</span>
+    <span class="spark" style="top:150px;left:10px;animation-delay:1.2s;">✦</span>
+    <span class="spark" style="top:120px;right:36px;animation-delay:1.8s;">✧</span>
+
+    <!-- abejita volando en 8 -->
+    <div class="bee-fly"><img src="abejita.png" alt="Abejita" style="width:100%;display:block;filter:drop-shadow(0 6px 6px rgba(80,50,0,.3));"></div>
+
+    <!-- sobre -->
+    <div class="envelope">
+      <div class="env-body"></div>
+      <div class="env-card"><span style="font-size:1.6rem">💛</span><span class="mini-ph">Estás invitad@</span></div>
+      <div class="env-pocket"></div>
+      <div class="env-flap"></div>
+    </div>
+
+    <!-- Plim Plim -->
+    <div class="plimplim">
+      <img src="ppclean.png" alt="Plim Plim" class="plim-img"
+           onerror="this.outerHTML='&lt;div class=\'plim-ph\'&gt;PLIM PLIM&lt;br&gt;(guarda ppclean.png aquí)&lt;/div&gt;'">
+    </div>
+  </div>
+
+  <div class="dale"><span class="play">▶</span> DALE CLICK</div>
+  <div class="intro-title">¡Una invitación para ti!</div>
+  <div class="intro-sub">🐝 Nuestra pequeña abejita Alessandra 🍯</div>
+  <button class="btn-open" onclick="abrir()">Abrir el sobre ✨</button>
+</div>
+
+<!-- ============ CONTENIDO ============ -->
+<div class="wrap">
+
+  <!-- Foto principal + cumple un año -->
+  <div class="card">
+    <div class="hex framed foto-principal">
+      <div class="hex-inner"><img class="photo" src="img3.jpeg" alt="Alessandra"></div>
+    </div>
+    <div class="cumple">¡Está de fiesta porque cumple<span class="gold">UN AÑITO</span></div>
+  </div>
+
+  <!-- Felicitaciones + nombre -->
+  <div class="card">
+    <h2 class="sec">✨ Felicidades pequeña abejita ✨</h2>
+    <p class="honor">Tenemos el honor de invitarte a celebrar el <span class="pequena">primer añito</span> de nuestra hermosa abejita <span class="pequena">Alessandra</span>. Un año entero llenándonos de miel, sonrisas y aleteos de amor. 🍯💛</p>
+    <div class="nombre">Alessandra</div>
+  </div>
+
+  <!-- Galería zigzag hexagonal -->
+  <div class="card">
+    <h2 class="sec">📸 Nuestros momentos</h2>
+    <div class="galeria">
+      <div class="g-row g-left"><div class="hex framed hex-md"><div class="hex-inner"><img class="photo" src="img1.jpeg" alt="Alessandra"></div></div></div>
+      <div class="g-row g-right"><div class="hex framed hex-md"><div class="hex-inner"><img class="photo" src="img2.jpeg" alt="Alessandra"></div></div></div>
+      <div class="g-row g-left"><div class="hex framed hex-md"><div class="hex-inner"><img class="photo" src="img3.jpeg" alt="Alessandra"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Personajes -->
+  <div class="card">
+    <h2 class="sec">🐝 Con la Abejita y sus amigos</h2>
+    <div class="personajes">
+      <!-- Abejita (imagen real) -->
+      <div class="pj"><div class="disc img-slot">
+        <img src="abejita.png" alt="Abejita" style="width:100%;height:100%;object-fit:contain;padding:8px;">
+      </div><p>Abejita</p></div>
+      <!-- Plim Plim (tu PNG) -->
+      <div class="pj"><div class="disc img-slot">
+        <img src="ppclean.png" alt="Plim Plim" class="plim-slot"
+             onerror="this.parentNode.classList.remove('img-slot');this.outerHTML='Plim Plim'">
+      </div><p>Plim Plim</p></div>
+      <!-- Mariposa -->
+      <div class="pj"><div class="disc">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#FFE7F2"/>
+          <ellipse cx="32" cy="38" rx="18" ry="15" fill="#FF8FB8" stroke="#C43C74" stroke-width="2.5" transform="rotate(-18 32 38)"/>
+          <ellipse cx="68" cy="38" rx="18" ry="15" fill="#FF8FB8" stroke="#C43C74" stroke-width="2.5" transform="rotate(18 68 38)"/>
+          <ellipse cx="34" cy="64" rx="15" ry="12" fill="#FFC0DB" stroke="#C43C74" stroke-width="2.5" transform="rotate(20 34 64)"/>
+          <ellipse cx="66" cy="64" rx="15" ry="12" fill="#FFC0DB" stroke="#C43C74" stroke-width="2.5" transform="rotate(-20 66 64)"/>
+          <circle cx="30" cy="38" r="3.5" fill="#fff" opacity=".8"/><circle cx="70" cy="38" r="3.5" fill="#fff" opacity=".8"/>
+          <rect x="47" y="34" width="6" height="38" rx="3" fill="#7A3F1E"/>
+          <circle cx="50" cy="34" r="6" fill="#7A3F1E"/>
+          <circle cx="47.5" cy="33" r="1.3" fill="#fff"/><circle cx="52.5" cy="33" r="1.3" fill="#fff"/>
+          <path d="M46 28 q-5 -8 -9 -9" stroke="#7A3F1E" stroke-width="2" fill="none"/><path d="M54 28 q5 -8 9 -9" stroke="#7A3F1E" stroke-width="2" fill="none"/>
+        </svg></div><p>Mariposa</p></div>
+      <!-- Mariquita -->
+      <div class="pj"><div class="disc">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#FFF3C4"/>
+          <ellipse cx="50" cy="55" rx="30" ry="28" fill="#EF4B4B" stroke="#221B0A" stroke-width="3"/>
+          <path d="M50 27 v56" stroke="#221B0A" stroke-width="3"/>
+          <circle cx="50" cy="33" r="12" fill="#221B0A"/>
+          <circle cx="45" cy="31" r="2.4" fill="#fff"/><circle cx="55" cy="31" r="2.4" fill="#fff"/>
+          <circle cx="38" cy="50" r="4" fill="#221B0A"/><circle cx="62" cy="50" r="4" fill="#221B0A"/>
+          <circle cx="40" cy="66" r="4" fill="#221B0A"/><circle cx="60" cy="66" r="4" fill="#221B0A"/>
+          <path d="M44 22 q-3 -7 -8 -8" stroke="#221B0A" stroke-width="2.2" fill="none"/><circle cx="36" cy="13" r="2.4" fill="#221B0A"/>
+          <path d="M56 22 q3 -7 8 -8" stroke="#221B0A" stroke-width="2.2" fill="none"/><circle cx="64" cy="13" r="2.4" fill="#221B0A"/>
+        </svg></div><p>Mariquita</p></div>
+      <!-- Florecita -->
+      <div class="pj"><div class="disc">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#E8F7D8"/>
+          <g fill="#FFB3D1" stroke="#E86A9E" stroke-width="2">
+            <ellipse cx="50" cy="28" rx="10" ry="14"/><ellipse cx="72" cy="50" rx="14" ry="10"/>
+            <ellipse cx="50" cy="72" rx="10" ry="14"/><ellipse cx="28" cy="50" rx="14" ry="10"/>
+          </g>
+          <circle cx="50" cy="50" r="14" fill="#FFD34E" stroke="#E68A00" stroke-width="2.5"/>
+          <circle cx="45" cy="48" r="2.4" fill="#221B0A"/><circle cx="55" cy="48" r="2.4" fill="#221B0A"/>
+          <path d="M45 55 q5 5 10 0" stroke="#221B0A" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg></div><p>Florecita</p></div>
+    </div>
+    <div class="nombre">Alessandra</div>
+  </div>
+
+  <!-- Contador -->
+  <div class="card">
+    <h2 class="sec">⏳ Falta muy poquito</h2>
+    <div class="contador">
+      <div class="cbox"><span class="num" id="dias">0</span><span class="lab">Días</span></div>
+      <div class="cbox"><span class="num" id="horas">0</span><span class="lab">Horas</span></div>
+      <div class="cbox"><span class="num" id="min">0</span><span class="lab">Min</span></div>
+      <div class="cbox"><span class="num" id="seg">0</span><span class="lab">Seg</span></div>
+    </div>
+  </div>
+
+  <!-- Fecha calendario -->
+  <div class="card">
+    <h2 class="sec">📅 Marca la fecha</h2>
+    <div class="cal">
+      <div class="cal-mes" id="calMes">Mes</div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <div class="acompana">¡Acompáñanos a festejar!</div>
+  </div>
+
+  <!-- Bloque fecha / 1 / hora (llamativo) -->
+  <div class="card evento-hero">
+    <div class="eh-title">¡Nos vemos el gran día!</div>
+    <div class="eh-top">
+      <div class="chip"><span class="chip-ico">📆</span><b>Sábado 15</b><small>de agosto 2026</small></div>
+      <img src="unoclean.png" alt="1 añito" class="eh-uno">
+      <div class="chip"><span class="chip-ico">🕐</span><b>2:00 pm</b><small>recepción</small></div>
+    </div>
+    <div class="eh-show">🎪 ¡El show empieza a las 5:00 pm!</div>
+  </div>
+
+  <!-- Ubicación -->
+  <div class="card">
+    <h2 class="sec">📍 ¿Dónde nos vemos?</h2>
+    <div class="direccion"><span class="pin" style="font-size:2rem;">📍</span><br>Local “El Jardín”<small>C. 17 s/n por 8 y 10, Caucel Pueblo</small></div>
+    <div class="mapa-embed">
+      <iframe src="https://maps.google.com/maps?q=Calle%2017%20por%208%20y%2010%20Caucel%20Pueblo%20Merida&z=16&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+    <a class="btn btn-mapa" href="https://maps.app.goo.gl/xzQs6YZXoc26CGEU8" target="_blank" rel="noopener">🗺️ Abrir en Google Maps</a>
+  </div>
+
+  <!-- WhatsApp -->
+  <div class="card">
+    <svg viewBox="0 0 24 24" style="width:56px;height:56px;margin-bottom:6px;" fill="#25D366"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.94-.26-.1-.45-.15-.64.15-.19.28-.73.94-.9 1.13-.16.19-.33.21-.61.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.29-.02-.45.13-.6.13-.13.3-.34.45-.51.15-.17.2-.29.3-.48.1-.19.05-.36-.02-.51-.08-.15-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.38 0 1.4 1.02 2.76 1.17 2.95.14.19 2.01 3.08 4.88 4.32.68.29 1.21.47 1.63.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3 .79.8-2.92-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>
+    <h2 class="sec">Confirma tu asistencia</h2>
+    <p class="esperamos">Nos encantará saber que nos acompañas. Permítenos preparar todos los detalles confirmando tu asistencia. 💛🐝</p>
+    <a class="btn btn-wa" id="waBtn" href="https://wa.me/9992320335?text=Hola!%20Confirmo%20mi%20asistencia%20al%20primer%20a%C3%B1ito%20de%20Alessandra%20🐝" target="_blank" rel="noopener">Confirmar</a>
+    <div class="acompana" style="margin-top:14px;">¡Te esperamos!</div>
+  </div>
+
+  <div class="hint">🐝 Ven a celebrar el primer añito de <b>Alessandra</b> en un día lleno de miel, color y mucha alegría. Habrá show, dulces y momentos para atesorar. ¡Tu presencia hará este momento aún más dulce! 🍯💛</div>
+
+  <!-- Firma Zentria Digital -->
+  <div class="firma" id="firma">
+    <svg class="z-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 4 L88 26 L88 74 L50 96 L12 74 L12 26 Z" fill="#221B0A" stroke="#F5A623" stroke-width="3"/>
+      <path d="M34 34 H66 L38 62 H66" stroke="#F5A623" stroke-width="7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#F5A623" stroke-width="1" stroke-dasharray="3 5" opacity=".5"/>
+    </svg>
+    <div class="z-name">ZENTRIA <span>DIGITAL</span></div>
+    <div class="z-tag">Diseño & Experiencias</div>
+  </div>
+</div>
+
+<canvas id="confeti"></canvas>
+
+<!-- música de fondo -->
+<audio id="bgm" src="abejita.mp3" loop preload="auto"></audio>
+<button id="musicBtn" class="music-btn" onclick="toggleMusic()" title="Música">🎵</button>
+
+<script>
+/* ===== INTRO ===== */
+function abrir(){
+  const i=document.getElementById('intro');
+  i.classList.add('opening');
+  setTimeout(()=>{i.classList.add('hide');},900);
+  setTimeout(revelar,1000);
+  playMusic();
+}
+
+/* ===== música (MP3 local) ===== */
+var bgm=document.getElementById('bgm'), musicOn=false;
+bgm.volume=0.7;
+function playMusic(){
+  bgm.play().then(function(){musicOn=true;updateMusicBtn();})
+            .catch(function(){musicOn=false;updateMusicBtn();});
+}
+function toggleMusic(){
+  if(bgm.paused){bgm.play();musicOn=true;}
+  else{bgm.pause();musicOn=false;}
+  updateMusicBtn();
+}
+function updateMusicBtn(){
+  var b=document.getElementById('musicBtn');
+  b.textContent=musicOn?'🎵':'🔇';
+  b.classList.toggle('playing',musicOn);
+}
+
+/* ===== reveal on scroll ===== */
+function revelar(){
+  const els=document.querySelectorAll('.card,.firma');
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}});
+  },{threshold:.12});
+  els.forEach(el=>io.observe(el));
+}
+revelar();
+
+/* ===== contador ===== */
+/* 👉 Cambia por la fecha real: Año-Mes-DíaTHora:Min */
+const FECHA_EVENTO=new Date('2026-08-15T14:00:00');
+function tick(){
+  let d=FECHA_EVENTO-new Date(); if(d<0)d=0;
+  const set=(id,v)=>document.getElementById(id).textContent=String(v).padStart(2,'0');
+  set('dias',Math.floor(d/864e5));
+  set('horas',Math.floor(d%864e5/36e5));
+  set('min',Math.floor(d%36e5/6e4));
+  set('seg',Math.floor(d%6e4/1e3));
+}
+tick();setInterval(tick,1000);
+
+/* ===== calendario automático ===== */
+(function(){
+  const meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const dows=['D','L','M','M','J','V','S'];
+  const y=FECHA_EVENTO.getFullYear(), m=FECHA_EVENTO.getMonth(), diaEvento=FECHA_EVENTO.getDate();
+  document.getElementById('calMes').textContent=meses[m]+' '+y;
+  const grid=document.getElementById('calGrid');
+  dows.forEach(d=>{const e=document.createElement('div');e.className='dow';e.textContent=d;grid.appendChild(e);});
+  const primerDia=new Date(y,m,1).getDay();
+  const diasMes=new Date(y,m+1,0).getDate();
+  for(let i=0;i<primerDia;i++){const e=document.createElement('div');e.className='day empty';grid.appendChild(e);}
+  for(let d=1;d<=diasMes;d++){
+    const e=document.createElement('div');e.className='day';
+    if(d===diaEvento){e.classList.add('mark');e.innerHTML='<span class="heart">♥</span><span>'+d+'</span>';}
+    else e.textContent=d;
+    grid.appendChild(e);
+  }
+})();
+
+/* ===== polen flotante ===== */
+(function(){
+  const c=document.getElementById('polen'),x=c.getContext('2d');
+  let w,h,dots=[];
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight;}
+  size();addEventListener('resize',size);
+  for(let i=0;i<38;i++)dots.push({x:Math.random()*w,y:Math.random()*h,r:1+Math.random()*3,
+    s:.2+Math.random()*.6,a:.3+Math.random()*.4,dx:(Math.random()-.5)*.3});
+  (function loop(){
+    x.clearRect(0,0,w,h);
+    dots.forEach(d=>{
+      d.y-=d.s;d.x+=d.dx;if(d.y<-5){d.y=h+5;d.x=Math.random()*w;}
+      x.beginPath();x.arc(d.x,d.y,d.r,0,7);
+      x.fillStyle='rgba(255,240,180,'+d.a+')';x.shadowColor='#FFD34E';x.shadowBlur=6;x.fill();
+    });requestAnimationFrame(loop);
+  })();
+})();
+
+/* ===== confeti al confirmar ===== */
+document.getElementById('waBtn').addEventListener('click',()=>burst());
+function burst(){
+  const c=document.getElementById('confeti'),x=c.getContext('2d');
+  c.width=innerWidth;c.height=innerHeight;
+  const cols=['#F5A623','#FFD34E','#221B0A','#FFE9A8','#25D366'];
+  let p=[];for(let i=0;i<140;i++)p.push({x:innerWidth/2,y:innerHeight/2,
+    vx:(Math.random()-.5)*12,vy:Math.random()*-12-3,g:.35,
+    s:5+Math.random()*7,rot:Math.random()*6,vr:(Math.random()-.5)*.4,
+    col:cols[i%cols.length],life:120});
+  (function anim(){
+    x.clearRect(0,0,c.width,c.height);let alive=false;
+    p.forEach(o=>{if(o.life>0){alive=true;o.vy+=o.g;o.x+=o.vx;o.y+=o.vy;o.rot+=o.vr;o.life--;
+      x.save();x.translate(o.x,o.y);x.rotate(o.rot);x.fillStyle=o.col;
+      x.fillRect(-o.s/2,-o.s/2,o.s,o.s*.6);x.restore();}});
+    if(alive)requestAnimationFrame(anim);else x.clearRect(0,0,c.width,c.height);
+  })();
+}
+</script>
+</body>
+</html>
